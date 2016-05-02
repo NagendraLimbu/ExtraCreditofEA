@@ -39,7 +39,7 @@ public class MyApp {
 		EntityTransaction tx = em.getTransaction();
 		try {
 			tx.begin();		
-			
+			System.out.println("");
 // code here 
 			
 			
