@@ -1,5 +1,8 @@
 package com.imdb.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +15,7 @@ public class User {
 	private int userId;
 	private String name;
 	@ManyToMany(mappedBy="user")
-	private Movie movie;
+	private List<Movie> movie = new ArrayList<Movie>();
 	public int getUserId() {
 		return userId;
 	}
@@ -25,11 +28,12 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Movie getMovie() {
+	public List<Movie> getMovie() {
 		return movie;
 	}
-	public void setMovie(Movie movie) {
+	public void setMovie(List<Movie> movie) {
 		this.movie = movie;
 	}
+	
 	
 }

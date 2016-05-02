@@ -42,6 +42,7 @@ public class MyApp {
 			
 // code here 
 			
+			
 			tx.commit();
 		} catch (Throwable e) {
 			if ((tx != null) && (tx.isActive()))

@@ -1,19 +1,17 @@
 package com.imdb.domain;
 
-import javax.persistence.Embeddable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Artist extends Person {
@@ -28,7 +26,7 @@ public class Artist extends Person {
 	private byte[] photo;
 
 	@ManyToMany(mappedBy="artist")
-	private Movie moive;
+	private List<Movie> movie = new ArrayList<Movie>();
 	public Artist() {
 		super();
 	}
@@ -73,12 +71,13 @@ public class Artist extends Person {
 		this.photo = photo;
 	}
 
-	public Movie getMoive() {
-		return moive;
+	public List<Movie> getMovie() {
+		return movie;
 	}
 
-	public void setMoive(Movie moive) {
-		this.moive = moive;
+	public void setMovie(List<Movie> movie) {
+		this.movie = movie;
 	}
+
 	
 }
