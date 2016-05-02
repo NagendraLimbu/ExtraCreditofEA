@@ -38,24 +38,10 @@ public class MyApp {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		try {
-			tx.begin();
-
-			// TODO your code
-			List<Artist> act = new ArrayList<Artist>();
-			act.add(new Artist("Nagendra", "7", "Hero") );			
+			tx.begin();		
 			
-			Movie movie = new Movie();
-			movie.setCategory(Genre.COMMEDY);
-			movie.setComment("Good Movie");
-			Path p = FileSystems.getDefault().getPath("C:\\Users\\Nagendra\\Desktop\\Hibernet", "1.jpeg");
-			byte[] fileData = Files.readAllBytes(p);
-			movie.setCover(fileData);
-			movie.setName("The God must be crazy");
-			movie.setRating("2");
-			movie.setActorList(act);
-			em.persist(movie);
-
-
+// code here 
+			
 			tx.commit();
 		} catch (Throwable e) {
 			if ((tx != null) && (tx.isActive()))
