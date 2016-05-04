@@ -3,6 +3,7 @@ package com.imdb.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ public class User {
 	private int userId;
 	private String userName;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",cascade=CascadeType.PERSIST)
 	private List<Comment> comments = new ArrayList<Comment>();
 	
 	public User(String name){

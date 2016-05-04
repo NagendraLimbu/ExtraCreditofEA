@@ -1,5 +1,6 @@
 package com.imdb.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ public class ArtistCharacter {
 	private int charactorId;	
 	private String artistRole;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="artist")
 	private Artist artist;
 	

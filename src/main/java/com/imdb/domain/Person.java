@@ -11,13 +11,13 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Person {
 
-	@Id @GeneratedValue(strategy=GenerationType.TABLE)
+	@Id @GeneratedValue
 	private int personId;
 	
 	private String name;
 	
 	public Person(String Name){
-		this.name=name;
+		this.name=Name;
 	}
 	public int getPersonId() {
 		return personId;

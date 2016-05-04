@@ -1,10 +1,7 @@
 package com.imdb.control;
 
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -84,7 +81,17 @@ public class MyApp {
 			List<Director> directorlist=new ArrayList<Director>();
 			directorlist.add(d1);
 			directorlist.add(d2);
-			Movie m=new Movie(artists, directorlist, commentlist);	
+			Movie m=new Movie("DON", "2016", "5", Genre.ACTION, artists, directorlist, commentlist);
+			Movie m1=new Movie("The God Must be Creazy", "2010", "5", Genre.COMMEDY, artists, directorlist, commentlist);
+			Movie m2=new Movie("The One", "2008", "5", Genre.ACTION, artists, directorlist, commentlist);
+			List<Movie> movielist=new ArrayList<Movie>();
+			movielist.add(m);
+			movielist.add(m1);
+			movielist.add(m2);
+			em.persist(m);
+			em.persist(m1);
+			em.persist(m2);
+			//em.persist(movielist);
 		
 			tx.commit();
 		} catch (Throwable e) {

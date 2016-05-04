@@ -45,10 +45,14 @@ public class Movie {
 	@OneToMany(mappedBy="movie", cascade=CascadeType.PERSIST)	
 	private List<Comment> comments=new ArrayList();
 
-	public Movie(List<Artist> artistlist, List<Director> directorlist, List<Comment> commentlist){
+	public Movie(String title, String year, String rating, Genre g, List<Artist> artistlist, List<Director> directorlist, List<Comment> commentlist){
 		this.artist=artistlist;
 		this.director=directorlist;
 		this.comments=commentlist;
+		this.title=title;
+		this.year=year;
+		this.rating=rating;
+		this.category=g;
 	}
 	
 	public int getMovieId() {

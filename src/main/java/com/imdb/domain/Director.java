@@ -3,6 +3,7 @@ package com.imdb.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,9 +12,9 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Director extends Person{
 	
-	private String directorName;
+	//private String directorName;
 	
-	@ManyToMany(mappedBy="director")
+	@ManyToMany(mappedBy="director",cascade=CascadeType.PERSIST)
 	private List<Movie> movie = new ArrayList<Movie>();
 	
 	public Director(String name){
@@ -26,16 +27,6 @@ public class Director extends Person{
 
 	public void setMovie(List<Movie> movie) {
 		this.movie = movie;
-	}
-
-
-	public String getDirectorName() {
-		return directorName;
-	}
-
-
-	public void setDirectorName(String directorName) {
-		this.directorName = directorName;
 	}
 
 }

@@ -22,20 +22,21 @@ import java.util.List;
 public class Artist extends Person {
 
 	//@Temporal(TemporalType.DATE)
+	//private String name;
 	private String dateOfBirth;
 	private String birthPlace;	
 	private String biography;
 //	@Lob
 //	private byte[] photo;
 
-	@ManyToMany(mappedBy="artist")
+	@ManyToMany(mappedBy="artist",cascade=CascadeType.PERSIST)
 	private List<Movie> movie = new ArrayList<Movie>();
 	
 	@OneToMany(mappedBy="artist", cascade=CascadeType.PERSIST)
 	private List<ArtistCharacter> characterList=new ArrayList<ArtistCharacter>();
 		
 	public Artist(String name,String dob, String birthplace, String biography,List<ArtistCharacter> characterlist){
-		super(name);
+		super(name);		
 		this.dateOfBirth=dob;
 		this.birthPlace=birthplace;
 		this.biography=biography;
