@@ -3,14 +3,17 @@ package com.imdb.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Movie {
@@ -19,34 +22,35 @@ public class Movie {
 	@GeneratedValue
 	private int movieId;
 
-	private String title;
-	private String comment;
+	private String title;	
 	private String year;
 	private String rating;
 	@Enumerated(EnumType.STRING)
 	private Genre category;
- 
-	@ManyToMany
-	@JoinTable(name="Movie_Artist",
-			joinColumns={ @JoinColumn(name="movieId")},
-			inverseJoinColumns={ @JoinColumn(name="artistId")}
+
+	@ManyToMany(cascade=CascadeType.PERSIST)
+	@JoinTable(name = "Movie_Artist", 
+			joinColumns = {@JoinColumn(name= "Movie_ID") }, 
+			inverseJoinColumns = { @JoinColumn(name = "Artist_ID") }
 			)
 	private List<Artist> artist=new ArrayList();
 	
-	@ManyToMany
-	@JoinTable(name="Movie_Director",
-			joinColumns={ @JoinColumn(name="movieId")},
-			inverseJoinColumns={ @JoinColumn(name="directorId")}
+	@ManyToMany(cascade=CascadeType.PERSIST)
+	@JoinTable(name = "Movie_Director", 
+			joinColumns = {@JoinColumn(name= "Movie_ID") }, 
+			inverseJoinColumns = { @JoinColumn(name = "Director_ID") }
 			)
 	private List<Director> director=new ArrayList();
 	
-	@ManyToMany
-	@JoinTable(name="Movie_User",
-			joinColumns={ @JoinColumn(name="movieId")},
-			inverseJoinColumns={ @JoinColumn(name="userId")}
-			)
-	private List<User> user=new ArrayList();
+	@OneToMany(mappedBy="movie", cascade=CascadeType.PERSIST)	
+	private List<Comment> comments=new ArrayList();
 
+	public Movie(List<Artist> artistlist, List<Director> directorlist, List<Comment> commentlist){
+		this.artist=artistlist;
+		this.director=directorlist;
+		this.comments=commentlist;
+	}
+	
 	public int getMovieId() {
 		return movieId;
 	}
@@ -61,14 +65,6 @@ public class Movie {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
 	}
 
 	public String getYear() {
@@ -109,14 +105,6 @@ public class Movie {
 
 	public void setDirector(List<Director> director) {
 		this.director = director;
-	}
-
-	public List<User> getUser() {
-		return user;
-	}
-
-	public void setUser(List<User> user) {
-		this.user = user;
 	}
 	
 }

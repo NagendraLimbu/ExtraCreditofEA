@@ -4,35 +4,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
 
 	@Id @GeneratedValue
 	private int userId;
-	private String name;
-	@ManyToMany(mappedBy="user")
-	private List<Movie> movie = new ArrayList<Movie>();
+	private String userName;
+	
+	@OneToMany(mappedBy="user")
+	private List<Comment> comments = new ArrayList<Comment>();
+	
+	public User(String name){
+		this.userName=name;
+	}
+	
 	public int getUserId() {
 		return userId;
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}	
+	public List<Comment> getComments() {
+		return comments;
 	}
-	public String getName() {
-		return name;
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public String getUserName() {
+		return userName;
 	}
-	public List<Movie> getMovie() {
-		return movie;
-	}
-	public void setMovie(List<Movie> movie) {
-		this.movie = movie;
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	
